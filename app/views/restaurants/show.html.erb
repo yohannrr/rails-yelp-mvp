@@ -1,0 +1,15 @@
+<!-- app/views/restaurants/show.html.erb -->
+<h1><%= @restaurant.name %></h1>
+<p><%= @restaurant.address %></p>
+<p><%= @restaurant.category %></p>
+
+<h3>Reviews</h3>
+<%= render 'reviews/form', restaurant: @restaurant %> <!-- Render form with the restaurant passed -->
+
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li>
+      <strong>Rating:</strong> <%= review.rating %> - <%= review.content %>
+    </li>
+  <% end %>
+</ul>

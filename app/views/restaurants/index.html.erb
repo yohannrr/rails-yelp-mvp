@@ -1,0 +1,29 @@
+<!-- app/views/restaurants/index.html.erb -->
+<h1>Restaurants</h1>
+
+<%= link_to 'New Restaurant', new_restaurant_path, class: 'btn btn-primary mb-3' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.address %></td>
+        <td><%= restaurant.category %></td>
+        <td>
+          <%= link_to 'Show', restaurant_path(restaurant), class: 'btn btn-info btn-sm' %>
+          <%= link_to 'Edit', edit_restaurant_path(restaurant), class: 'btn btn-warning btn-sm' %>
+          <%= link_to 'Delete', restaurant_path(restaurant), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

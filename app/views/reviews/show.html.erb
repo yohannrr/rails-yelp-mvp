@@ -1,0 +1,17 @@
+<!-- app/views/restaurants/show.html.erb -->
+<h1><%= @restaurant.name %></h1>
+<p><%= @restaurant.address %></p>
+<p><strong>Category:</strong> <%= @restaurant.category %></p>
+
+<h2>Reviews:</h2>
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item">
+      <p><%= review.content %></p>
+      <p><strong>Rating:</strong> <%= review.rating %> / 5</p>
+      <%= link_to "Delete", review_path(review), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Write a Review', new_restaurant_review_path(@restaurant), class: "btn btn-primary mt-3" %>

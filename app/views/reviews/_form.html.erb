@@ -1,0 +1,24 @@
+<!-- app/views/reviews/_form.html.erb -->
+<%= form_with(model: [restaurant, @review], local: true) do |form| %>
+  <% if @review.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.text_area :content, class: 'form-control' %>
+  </div>
+
+  <%= form.submit 'Submit Review', class: 'btn btn-primary' %>
+<% end %>

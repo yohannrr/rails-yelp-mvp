@@ -1,0 +1,42 @@
+<!-- app/views/restaurants/new.html.erb -->
+<h1>Create a New Restaurant</h1>
+
+<%= form_with(model: @restaurant, local: true) do |form| %>
+  <% if @restaurant.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @restaurant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+    <% if @restaurant.errors[:name].any? %>
+      <div class="text-danger"><%= @restaurant.errors[:name].first %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: 'form-control' %>
+    <% if @restaurant.errors[:address].any? %>
+      <div class="text-danger"><%= @restaurant.errors[:address].first %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :category %>
+    <%= form.text_field :category, class: 'form-control' %>
+    <% if @restaurant.errors[:category].any? %>
+      <div class="text-danger"><%= @restaurant.errors[:category].first %></div>
+    <% end %>
+  </div>
+
+  <%= form.submit 'Create Restaurant', class: 'btn btn-primary' %>
+<% end %>
+
+<%= link_to 'Back to List', restaurants_path, class: 'btn btn-secondary' %>
